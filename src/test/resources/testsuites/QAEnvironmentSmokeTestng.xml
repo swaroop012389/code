@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="QA Environment Smoke Tests" parallel="tests" thread-count="8">
+	<listeners>
+		<listener class-name="com.NetServAutomationFramework.test.SuiteListener" />
+	</listeners>
+    <test name="Environment Smoke Tests" parallel="classes">
+        <classes>
+            <class name="com.icat.epicenter.test.commercial.smoke.TC001"/> -->
+            <!--<class name="com.icat.epicenter.test.commercial.smoke.TC002"/> This is a GL test-->
+            <class name="com.icat.epicenter.test.commercial.smoke.TC003"/>
+            <class name="com.icat.epicenter.test.commercial.smoke.TC004"/>
+            <class name="com.icat.epicenter.test.commercial.smoke.TC005"/>
+            <!--<class name="com.icat.epicenter.test.commercial.smoke.TC006"/> This is a GL test-->
+            <class name="com.icat.epicenter.test.commercial.smoke.TC007"/>
+            <class name="com.icat.epicenter.test.commercial.smoke.TC008"/>
+
+            <class name="com.icat.epicenter.test.naho.smoke.TC001"/>
+            <class name="com.icat.epicenter.test.naho.smoke.TC002"/>
+            <class name="com.icat.epicenter.test.naho.smoke.TC003"/>
+            <class name="com.icat.epicenter.test.naho.smoke.TC004"/>
+            <class name="com.icat.epicenter.test.naho.smoke.TC005"/>
+            <class name="com.icat.epicenter.test.naho.smoke.TC006"/>
+
+            <class name="com.icat.epicenter.test.hiho.smoke.TC001"/>
+        </classes>
+    </test>
+</suite>

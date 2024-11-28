@@ -1,0 +1,116 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.icat.epicenter.automation</groupId>
+	<artifactId>epicenter-automation-tests</artifactId>
+	<version>24.0.7-SNAPSHOT</version>
+
+	<parent>
+		<groupId>com.icat</groupId>
+		<artifactId>global-pom</artifactId>
+		<version>2.0.7</version>
+	</parent>
+
+	<properties>
+		<java.version>17</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+
+		<test.suite>NoTests</test.suite> <!-- don't run any tests unless a suite is specified -->
+		<test.env>qa1</test.env>
+		<surefire.version>3.5.1</surefire.version>
+		<!-- Data Tests to run.  If blank, then the ones in the spreadsheet will be run.
+		     e.g. <parameter name="scenarios" value="1-3,5"/> -->
+		<test.scenarios>1</test.scenarios>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<executable>${java.home}</executable>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<suiteXmlFiles>
+								<suiteXmlFile>src/test/resources/testsuites/${test.suite}Testng.xml</suiteXmlFile>
+							</suiteXmlFiles>
+							<systemPropertyVariables>
+								<environment>${test.env}</environment>
+								<scenarios>${test.scenarios}</scenarios>
+							</systemPropertyVariables>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>rerun-failed</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<suiteXmlFiles>
+								<suiteXmlFile>./target/surefire-reports/testng-failed.xml</suiteXmlFile>
+							</suiteXmlFiles>
+							<systemPropertyVariables>
+								<environment>${test.env}</environment>
+								<scenarios>${test.scenarios}</scenarios>
+							</systemPropertyVariables>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>rerun-failed-jenkins</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<suiteXmlFiles>
+								<suiteXmlFile>../${jobNumber}/target/surefire-reports/testng-failed.xml</suiteXmlFile>
+							</suiteXmlFiles>
+							<systemPropertyVariables>
+								<environment>${test.env}</environment>
+								<scenarios>${test.scenarios}</scenarios>
+							</systemPropertyVariables>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.icat.epicenter.automation</groupId>
+			<artifactId>base-framework</artifactId>
+			<version>24.1.0</version>
+		</dependency>
+	</dependencies>
+</project>

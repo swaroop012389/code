@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Debugging Sequential Test Failure" parallel="none">
+    <listeners>
+        <listener class-name="com.NetServAutomationFramework.test.SuiteListener" />
+    </listeners>
+	<test name="Debugging Sequential Test 1">
+		<classes>
+			<class name="com.icat.epicenter.test.debugging.DoVeryLittle" />
+		</classes>
+	</test>
+	<test name="Debugging Sequential Test 2">
+		<classes>
+			<class name="com.icat.epicenter.test.debugging.DoVeryLittle" />
+		</classes>
+	</test>
+	<test name="Debugging Sequential Test 3">
+		<classes>
+			<class name="com.icat.epicenter.test.debugging.DoVeryLittle" />
+		</classes>
+	</test>
+</suite>

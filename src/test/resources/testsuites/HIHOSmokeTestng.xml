@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Smoke Tests" parallel="tests" thread-count="10">
+  <listeners>
+    <listener class-name="com.NetServAutomationFramework.test.SuiteListener" />
+  </listeners>
+  <test name="HIHO Smoke Tests" parallel="classes">
+    <classes>
+      <class name="com.icat.epicenter.test.hiho.smoke.TC001"/>
+<!--
+      <class name="com.icat.epicenter.test.hiho.smoke.TC002"/>
+      <class name="com.icat.epicenter.test.hiho.smoke.TC003"/>
+      <class name="com.icat.epicenter.test.hiho.smoke.TC004"/>
+      <class name="com.icat.epicenter.test.hiho.smoke.TC005"/>
+      <class name="com.icat.epicenter.test.hiho.smoke.TC006"/>
+      <class name="com.icat.epicenter.test.hiho.smoke.TC007"/>
+      <class name="com.icat.epicenter.test.hiho.smoke.TC008"/>
+      <class name="com.icat.epicenter.test.hiho.smoke.TC009"/>
+      <class name="com.icat.epicenter.test.hiho.smoke.TC010"/>
+-->
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

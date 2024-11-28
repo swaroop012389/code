@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<!-- =============================================================================
+     Add all regression tests needed to verify a release is stable.
+============================================================================== -->
+
+<suite name="Regression Tests" parallel="tests" thread-count="10">
+  <listeners>
+    <listener class-name="com.NetServAutomationFramework.test.SuiteListener" />
+  </listeners>
+  <test name="Verify Release is Stable" parallel="classes">
+    <classes>
+      <!-- <class name="com.icat.epicenter.test.commercial.smoke.TC003"/> -->
+      <class name="com.icat.epicenter.test.naho.smoke.TC003"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

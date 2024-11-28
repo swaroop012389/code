@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Tests" parallel="tests" thread-count="8">
+	<listeners>
+		<listener class-name="com.NetServAutomationFramework.test.SuiteListener" />
+	</listeners>
+	<test name="Commercial Wholesale Non-User Preferences Tests"
+		parallel="classes">
+		<classes>
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC001" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC002" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC003" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC004" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC005" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC006" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC007" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC008" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC009" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC010" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC012" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC013" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC014" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC015" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC016" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC017" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC018" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC019" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC020" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC021" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC022" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC023" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC024" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC025" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC027" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC028" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC029" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC030" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC031" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC032" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC033" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC034" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC035" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC036" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC037" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC038" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC039" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC040" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC041" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC042" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC043" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC045" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC046" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC047" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC048" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC050" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC051" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC052" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC053" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC054" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC056" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC057" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC058" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC059" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC060" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC061" />
+		
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC063" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC064" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC065" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC066" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC067" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC068" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC069" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC070" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC072" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC073" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC074" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC075" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC076" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC077" />
+
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC078" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC080" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC082" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC083" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC084" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC085" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC086" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC087" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC088" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC089" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC090" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC091" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC092" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC093" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC094" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC095" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC096" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC097" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC098" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC100" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC101" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC102" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC115" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC116" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC117" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC118" />
+
+		</classes>
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->

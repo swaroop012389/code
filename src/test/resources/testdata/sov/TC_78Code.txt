@@ -1,0 +1,634 @@
+package com.epicenter.NAHO_PNBRegression;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.NumberFormat;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+
+import com.NetServAutomationFramework.generic.Assertions;
+import com.NetServAutomationFramework.generic.FWProperties;
+import com.epicenter.POM.AccountOverviewPage;
+import com.epicenter.POM.ApproveDeclineQuotePage;
+import com.epicenter.POM.CreateQuotePage;
+import com.epicenter.POM.DwellingPage;
+import com.epicenter.POM.EligibilityPage;
+import com.epicenter.POM.EndorsePolicyPage;
+import com.epicenter.POM.EndorseSummaryDetailsPage;
+import com.epicenter.POM.HomePage;
+import com.epicenter.POM.LoginPage;
+import com.epicenter.POM.PolicySummaryPage;
+import com.epicenter.POM.PriorLossesPage;
+import com.epicenter.POM.ReferQuotePage;
+import com.epicenter.POM.ReferralPage;
+import com.epicenter.POM.RequestBindPage;
+import com.epicenter.POM.UnderwritingQuestionsPage;
+
+public class TC078_PNBREN012 {
+
+	public void PNBREN012_Exe(List<HashMap<String, String>> data) {
+
+		HomePage homePage = HomePage.initialize();
+		LoginPage loginPage = LoginPage.initialize();
+		EligibilityPage eligibilityPage = EligibilityPage.initialize();
+		DwellingPage dwellingPage = DwellingPage.initialize();
+		PriorLossesPage priorLossesPage = PriorLossesPage.initialize();
+		CreateQuotePage createQuotePage = CreateQuotePage.initialize();
+		AccountOverviewPage accountOverviewPage = AccountOverviewPage.initialize();
+		UnderwritingQuestionsPage underwritingQuestionsPage = UnderwritingQuestionsPage.initialize();
+		RequestBindPage requestBindPage = RequestBindPage.initialize();
+		ReferralPage referralPage = ReferralPage.initialise();
+		ApproveDeclineQuotePage approveDeclineQuotePage = ApproveDeclineQuotePage.initialize();
+		PolicySummaryPage policySummaryPage = PolicySummaryPage.initialise();
+		EndorsePolicyPage endorsePolicyPage = EndorsePolicyPage.initialize();
+		EndorseSummaryDetailsPage endorseSummaryDetailsPage = EndorseSummaryDetailsPage.initialize();
+		ReferQuotePage referQuotePage = ReferQuotePage.initialize();
+		NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
+
+		// Initializing variables
+		double transactionExpectedsltf;
+		String transactionactualSLTF;
+		String transactionPremium;
+		String transactioninspectionFee;
+		String transactionpolicyFee;
+		BigDecimal roundOfftransactionExpectedsltf;
+
+		int data_Value1 = 0;
+		int data_Value2 = 1;
+		int data_Value3 = 2;
+		FWProperties property = new FWProperties("DataSetup");
+		HashMap<String, String> testData = data.get(data_Value1);
+
+		// Creating New Account
+		Assertions.verify(homePage.createNewAccountProducer.checkIfElementIsDisplayed(), true, "Home Page",
+				"Home Page loaded successfully", false, false);
+		homePage.createNewAccountWithNamedInsured(testData);
+		Assertions.passTest("New Account", "New Account Created successfully");
+
+		// Entering Zipcode
+		Assertions.verify(eligibilityPage.continueButton.checkIfElementIsDisplayed(), true, "Eligibility Page",
+				"Eligibility Page loaded successfully", false, false);
+		eligibilityPage.processSingleZip(testData);
+		Assertions.passTest("Eligibility Page", "Zipcode entered successfully");
+
+		// Entering Location 1 Dwelling 1 Details
+		Assertions.verify(dwellingPage.reviewDwelling.checkIfElementIsDisplayed(), true, "Dwelling  Page",
+				"Dwelling Page Loaded successfully", false, false);
+		dwellingPage.enterDwellingDetailsNAHO(testData);
+		String roofMaterial=testData.get("L1D1-DwellingRoofCladding");
+		Assertions.passTest("Dwelling Page", "Roof Material selected as:"+roofMaterial);
+		Assertions.passTest("Dwelling Page", "Dwelling Details Entered successfully");
+
+		// Entering prior loss details
+		if (!testData.get("PriorLoss1").equals("")) {
+			Assertions.verify(priorLossesPage.continueButton.checkIfElementIsDisplayed(), true, "Prior Loss Page",
+					"Prior Loss Page loaded successfully", false, false);
+			priorLossesPage.selectPriorLossesInformation(testData);
+		}
+
+		// Entering Quote Details
+		Assertions.verify(createQuotePage.getAQuote.checkIfElementIsDisplayed(), true, "Create Quote Page",
+				"Create Quote Page loaded successfully", false, false);
+		createQuotePage.enterQuoteDetailsNAHO(testData);
+	
+		Assertions.passTest("Create quote Page", "Quote Details Entered successfully");
+
+		// Click on Continue
+		if (createQuotePage.continueButton.checkIfElementIsPresent()
+				&& createQuotePage.continueButton.checkIfElementIsDisplayed()) {
+			createQuotePage.continueButton.scrollToElement();
+			createQuotePage.continueButton.click();
+		}
+		// Check the quote is referred for Roof Material and Year Built.
+		Assertions.verify(referQuotePage.roofReferralMessage.checkIfElementIsDisplayed(), true, "Refer Quote Page",
+				"The Quote is referred for roof material and year built is verified,roof material is :"+roofMaterial+ ", Referral message is:"
+						+ referQuotePage.roofReferralMessage.getData(),
+				false, false);
+
+		referQuotePage.contactName.setData(testData.get("ProducerName"));
+		referQuotePage.contactEmail.setData(testData.get("ProducerEmail"));
+		referQuotePage.referQuote.waitTillPresenceOfElement(60);
+		referQuotePage.referQuote.waitTillVisibilityOfElement(60);
+		referQuotePage.referQuote.scrollToElement();
+		referQuotePage.referQuote.click();
+		String referQuoteNumber = referQuotePage.quoteNumberForReferral.getData();
+		Assertions.verify(referQuotePage.quoteNumberForReferral.checkIfElementIsDisplayed(), true,
+				"Referral Quote Page",
+				"The Quote is referred with Quote number is verified, Quote number is:" + referQuoteNumber, false,
+				false);
+
+		// SignOut as Producer
+		homePage.signOutButton.scrollToElement();
+		homePage.signOutButton.click();
+		Assertions.passTest("Home Page", "Logged out as Producer successfully");
+
+		// Signin as USM
+		loginPage.refreshPage();
+		loginPage.enterLoginDetails(property.getProperty("Username"), property.getProperty("Password"));
+		Assertions.passTest("Home Page", "Logged in as USM Successfully");
+
+		// Clicking on homepage button
+		homePage.goToHomepage.scrollToElement();
+		homePage.goToHomepage.click();
+		homePage.searchReferral(referQuoteNumber);
+		Assertions.passTest("Home Page", "Quote for referral is searched successfully");
+
+		// Approve the quote for referral
+		if (referralPage.pickUp.checkIfElementIsPresent() && referralPage.pickUp.checkIfElementIsDisplayed()) {
+			referralPage.pickUp.scrollToElement();
+			referralPage.pickUp.click();
+		}
+
+		Assertions.verify(referralPage.approveOrDeclineRequest.checkIfElementIsDisplayed(), true, "Referral Page",
+				"Referral page loaded successfully", false, false);
+		referralPage.clickOnApprove();
+		Assertions.passTest("Referral Page", "Referral request approved successfully");
+		Assertions.verify(approveDeclineQuotePage.approveButton.checkIfElementIsDisplayed(), true,
+				"Approve Decline Quote Page", "Approve Decline Quote page loaded successfully", false, false);
+		approveDeclineQuotePage.clickOnApprove();
+		Assertions.passTest("Approve Decline Quote Page", "Bind Request approved successfully");
+		referralPage.close.waitTillPresenceOfElement(60);
+		referralPage.close.waitTillVisibilityOfElement(60);
+		referralPage.close.scrollToElement();
+		referralPage.close.click();
+
+		// open the quote
+		// Searched for New Quote
+		homePage.findFilterArrow.scrollToElement();
+		homePage.findFilterArrow.waitTillPresenceOfElement(5);
+		homePage.findFilterArrow.click();
+		homePage.findFilterQuoteOption.click();
+		homePage.findQuoteNumber.setData(referQuoteNumber);
+		homePage.findBtnQuote.waitTillPresenceOfElement(5);
+		homePage.findBtnQuote.click();
+		Assertions.passTest("Home Page", "Click on Searched Quote and Navigated to Account Overview Page ");
+
+		// clik on bind button
+		accountOverviewPage.requestBind.waitTillPresenceOfElement(60);
+		accountOverviewPage.requestBind.waitTillVisibilityOfElement(60);
+		accountOverviewPage.requestBind.scrollToElement();
+		accountOverviewPage.requestBind.click();
+		Assertions.passTest("Account Overview Page", "Clicked on Request Bind Button successfully");
+
+		// Enter UnderWriting Questions
+		// Clicking on answer no button
+		Assertions.verify(underwritingQuestionsPage.answerNoToAllQuestions.checkIfElementIsDisplayed(), true,
+				"Underwriting Questions Page", "Underwriting Questions Page loaded successfully", false, false);
+		underwritingQuestionsPage.enterUnderwritingQuestionsDetails(testData);
+		Assertions.passTest("Underwriting Questions Page", "Underwriting Questions Details Entered successfully");
+
+		// Entering bind details
+		Assertions.verify(requestBindPage.submit.checkIfElementIsDisplayed(), true, "Request Bind Page",
+				"Request Bind Page loaded successfully", false, false);
+		Assertions.passTest("Request Bind Page", "Bind Details Entered Successfully");
+		requestBindPage.enterBindDetails(testData);
+
+		// Clicking on homepage button
+		homePage.goToHomepage.scrollToElement();
+		homePage.goToHomepage.click();
+		homePage.searchReferral(referQuoteNumber);
+		Assertions.passTest("Home Page", "Quote for referral is searched successfully");
+
+		// Approve the quote for referral
+		if (referralPage.pickUp.checkIfElementIsPresent() && referralPage.pickUp.checkIfElementIsDisplayed()) {
+			referralPage.pickUp.scrollToElement();
+			referralPage.pickUp.click();
+		}
+
+		Assertions.verify(referralPage.approveOrDeclineRequest.checkIfElementIsDisplayed(), true, "Referral Page",
+				"Referral page loaded successfully", false, false);
+		referralPage.clickOnApprove();
+		Assertions.passTest("Referral Page", "Referral request approved successfully");
+		Assertions.verify(approveDeclineQuotePage.approveButton.checkIfElementIsDisplayed(), true,
+				"Approve Decline Quote Page", "Approve Decline Quote page loaded successfully", false, false);
+		approveDeclineQuotePage.clickOnApprove();
+		Assertions.passTest("Approve Decline Quote Page", "Bind Request approved successfully");
+
+		// Getting Policy Number from policy summary Page
+		String policyNumber=policySummaryPage.policyNumber.getData();
+		Assertions.verify(policySummaryPage.policyNumber.checkIfElementIsDisplayed(), true, "Policy Summary Page",
+				"Policy Summary Page loaded successfully. PolicyNumber is " + policyNumber,
+				false, false);
+		
+		// Go to homepage and search the policy
+				homePage.goToHomepage.scrollToElement();
+				homePage.goToHomepage.click();
+				Assertions.passTest("Home Page", "Home Page loaded successfully");
+				homePage.searchPolicy(policyNumber);
+				Assertions.passTest("Home Page", "Searched the policy successfully");
+		
+		// Click on Rnewal Link
+		policySummaryPage.renewPolicy.scrollToElement();
+		policySummaryPage.renewPolicy.click();
+		Assertions.passTest("Policy Summary Page", "Clicked on Renewal link successfully ");
+		Assertions.verify(accountOverviewPage.viewPreviousPolicyButton.checkIfElementIsDisplayed(), true,
+				"Account Overvew Page", "Account Overview Page loaded successfully", false, false);
+
+		// Getting Renewal Quote Number
+		String renewalQuoteNumber = accountOverviewPage.quoteNumber.getData().substring(1, 12);
+		Assertions.passTest("Account Overview Page", "Renewal Quote Number is : " + renewalQuoteNumber);
+		Assertions.verify(accountOverviewPage.referredStatus.checkIfElementIsDisplayed(), true, "Account Overview Page",
+				"Renewal offer is referred for the Roof material is verified", false, false);
+
+		// click on Open Referral link
+		Assertions.verify(accountOverviewPage.openReferral.checkIfElementIsDisplayed(), true, "Account Overview Page",
+				"Clicked on open referral link successfully", false, false);
+		accountOverviewPage.openReferral.waitTillPresenceOfElement(60);
+		accountOverviewPage.openReferral.waitTillVisibilityOfElement(60);
+		accountOverviewPage.openReferral.scrollToElement();
+		accountOverviewPage.openReferral.click();
+
+		// Approve the quote for referral
+		if (referralPage.pickUp.checkIfElementIsPresent() && referralPage.pickUp.checkIfElementIsDisplayed()) {
+			referralPage.pickUp.scrollToElement();
+			referralPage.pickUp.click();
+		}
+
+		Assertions.verify(referralPage.approveOrDeclineRequest.checkIfElementIsDisplayed(), true, "Referral Page",
+				"Referral page loaded successfully", false, false);
+		referralPage.clickOnApprove();
+		Assertions.passTest("Referral Page", "Referral request approved successfully");
+		Assertions.verify(approveDeclineQuotePage.approveButton.checkIfElementIsDisplayed(), true,
+				"Approve Decline Quote Page", "Approve Decline Quote page loaded successfully", false, false);
+		approveDeclineQuotePage.clickOnApprove();
+		Assertions.passTest("Approve Decline Quote Page", "Bind Request approved successfully");
+		referralPage.close.waitTillPresenceOfElement(60);
+		referralPage.close.waitTillVisibilityOfElement(60);
+		referralPage.close.scrollToElement();
+		referralPage.close.click();
+
+		// Searched for New Quote
+		homePage.findFilterArrow.scrollToElement();
+		homePage.findFilterArrow.waitTillPresenceOfElement(5);
+		homePage.findFilterArrow.click();
+		homePage.findFilterQuoteOption.click();
+		homePage.findQuoteNumber.setData(renewalQuoteNumber);
+		homePage.findBtnQuote.waitTillPresenceOfElement(5);
+		homePage.findBtnQuote.click();
+		Assertions.passTest("Home Page", "Clicked on Searched Quote successfully ");
+
+		// Click on Release Renewal to Producer
+		Assertions.verify(accountOverviewPage.releaseRenewalToProducerButton.checkIfElementIsDisplayed(), true,
+				"Account Overview Page", "Account Overview Page loaded successfully", false, false);
+		accountOverviewPage.releaseRenewalToProducerButton.waitTillPresenceOfElement(60);
+		accountOverviewPage.releaseRenewalToProducerButton.waitTillVisibilityOfElement(60);
+		accountOverviewPage.releaseRenewalToProducerButton.scrollToElement();
+		accountOverviewPage.releaseRenewalToProducerButton.click();
+		Assertions.passTest("Account Overview Page", "Clicked on Release Renewal To Producer successfully");
+
+		// Click on Edit Dwelling link
+		accountOverviewPage.editDwelling.waitTillPresenceOfElement(60);
+		accountOverviewPage.editDwelling.waitTillVisibilityOfElement(60);
+		accountOverviewPage.editDwelling.scrollToElement();
+		accountOverviewPage.editDwelling.click();
+		String previousAddress = dwellingPage.address.getData();
+		String previousNoOfUnits = dwellingPage.noOfUnits.getData();
+		String previousNoOfStories = dwellingPage.numOfFloors.getData();
+		Assertions.passTest("Account Overview Page",
+				"Clicked Edit Dwelling link successfully and Navigated to Dwelling page ");
+
+		// enter dwelling details
+		testData = data.get(data_Value2);
+		dwellingPage.addDwellingDetails(testData, 1, 1);
+		dwellingPage.reviewDwelling.waitTillPresenceOfElement(60);
+		dwellingPage.reviewDwelling.waitTillVisibilityOfElement(60);
+		dwellingPage.reviewDwelling.scrollToElement();
+		dwellingPage.reviewDwelling.click();
+
+		Assertions.passTest("Dwelling Page",
+				"Changing Address From: " + previousAddress + " To: " + dwellingPage.dwellingAddress1.getData());
+		Assertions.passTest("Dwelling Page",
+				"Changing NoOfUnits From: " + previousNoOfUnits + " To: " + dwellingPage.dwellingNoOfUnits1.getData());
+		Assertions.passTest("Dwelling Page", "Changing NoOfStories From: " + previousNoOfStories + " To: "
+				+ dwellingPage.dwellingNoOfStories1.getData());
+
+		// Click on create quote button on dwelling page
+		Assertions.verify(dwellingPage.createQuote.checkIfElementIsDisplayed(), true, "Dwelling Page",
+				"Clicked on CreateQuote Button successfully", false, false);
+		dwellingPage.createQuote.waitTillPresenceOfElement(60);
+		dwellingPage.createQuote.waitTillVisibilityOfElement(60);
+		dwellingPage.createQuote.scrollToElement();
+		dwellingPage.createQuote.click();
+		// createQuotePage.waitTime(10);
+
+		// Enter Cov A value
+		Assertions.verify(createQuotePage.getAQuote.checkIfElementIsDisplayed(), true, "Create Quote Page",
+				"Create Quote Page loaded", false, false);
+		String previousCovA = createQuotePage.coverageADwelling.getData();
+		createQuotePage.coverageADwelling.waitTillPresenceOfElement(60);
+		createQuotePage.coverageADwelling.waitTillVisibilityOfElement(60);
+		createQuotePage.coverageADwelling.scrollToElement();
+		createQuotePage.coverageADwelling.clearData();
+		createQuotePage.waitTime(10);
+		createQuotePage.coverageADwelling.appendData(testData.get("L1D1-DwellingCovA"));
+		// createQuotePage.waitTime(10);
+		createQuotePage.coverageADwelling.tab();
+		createQuotePage.getAQuote.waitTillPresenceOfElement(60);
+		createQuotePage.getAQuote.waitTillVisibilityOfElement(60);
+		createQuotePage.getAQuote.scrollToElement();
+		createQuotePage.getAQuote.click();
+		createQuotePage.getAQuote.waitTillPresenceOfElement(60);
+		createQuotePage.getAQuote.waitTillVisibilityOfElement(60);
+		createQuotePage.getAQuote.scrollToElement();
+		createQuotePage.getAQuote.click();
+		Assertions.passTest("Create Quote Page",
+				"Cov A value changing From: " + previousCovA + "To: " + testData.get("L1D1-DwellingCovA"));
+
+		// Asserting Hard Stop message
+		if (createQuotePage.globalErr.checkIfElementIsDisplayed()
+				&& createQuotePage.globalErr.checkIfElementIsPresent()) {
+			Assertions.verify(createQuotePage.globalErr.checkIfElementIsDisplayed(), true, "Create Quote Page",
+					"Coverage A less than minimum limit of $150000 message is verified, Referral message is:"
+							+ createQuotePage.globalErr.getData(),
+					false, false);
+		} else {
+			Assertions.verify(createQuotePage.globalErr.checkIfElementIsDisplayed(), true, "Create Quote Page",
+					"Coverage A less than minimum limit of $150000 message is not  verified, Referral message is:"
+							+ createQuotePage.globalErr.getData(),
+					false, false);
+		}
+
+		// changing cov A value more than $150k but less than $300k
+		previousCovA = createQuotePage.coverageADwelling.getData();
+		testData = data.get(data_Value3);
+		createQuotePage.coverageADwelling.waitTillPresenceOfElement(60);
+		createQuotePage.coverageADwelling.waitTillVisibilityOfElement(60);
+		createQuotePage.coverageADwelling.scrollToElement();
+		createQuotePage.coverageADwelling.clearData();
+		createQuotePage.waitTime(10);
+		createQuotePage.coverageADwelling.appendData(testData.get("L1D1-DwellingCovA"));
+		createQuotePage.coverageADwelling.tab();
+		createQuotePage.getAQuote.waitTillPresenceOfElement(60);
+		createQuotePage.getAQuote.waitTillVisibilityOfElement(60);
+		createQuotePage.getAQuote.scrollToElement();
+		createQuotePage.getAQuote.click();
+		Assertions.passTest("Create Quote Page",
+				"Cov A value changing From: " + previousCovA + "To: " + testData.get("L1D1-DwellingCovA"));
+		
+		//System.out.println("Short term rental prasent element:"+createQuotePage.warningMessagesAdjustments.formatDynamicPath("Coverage A limit of less than").checkIfElementIsPresent());
+		
+		
+		
+		
+		if(createQuotePage.warningMessagesAdjustments.formatDynamicPath("more than").checkIfElementIsDisplayed()&& createQuotePage.warningMessagesAdjustments.formatDynamicPath("more than").checkIfElementIsPresent())
+		{
+		
+		
+		Assertions.verify(createQuotePage.warningMessagesAdjustments.formatDynamicPath("more than").checkIfElementIsDisplayed(),
+				true,"Create Quote Page", "Number of stories warning message is verified, warning message is: "+createQuotePage.warningMessagesAdjustments.formatDynamicPath("more than").getData(), 
+				false,false);
+		}
+		else {
+			Assertions.verify(createQuotePage.warningMessagesAdjustments.formatDynamicPath("more than").checkIfElementIsDisplayed(),
+					true,"Create Quote Page", "Number of stories warning message is not verified, warning message is: "+createQuotePage.warningMessagesAdjustments.formatDynamicPath("more than").getData(), 
+					false,false);
+		}
+		
+		if(createQuotePage.warningMessagesAdjustments.formatDynamicPath("number of units").checkIfElementIsDisplayed()&& createQuotePage.warningMessagesAdjustments.formatDynamicPath("number of units").checkIfElementIsPresent())
+		{
+		
+		
+		Assertions.verify(createQuotePage.warningMessagesAdjustments.formatDynamicPath("number of units").checkIfElementIsDisplayed(),
+				true,"Create Quote Page", "Number of units warning message is verified, warning message is: "+createQuotePage.warningMessagesAdjustments.formatDynamicPath("number of units").getData(), 
+				false,false);
+		}
+		else {
+			Assertions.verify(createQuotePage.warningMessagesAdjustments.formatDynamicPath("number of units").checkIfElementIsDisplayed(),
+					true,"Create Quote Page", "Number of units warning message is not verified, warning message is: "+createQuotePage.warningMessagesAdjustments.formatDynamicPath("number of units").getData(), 
+					false,false);
+		}
+		
+		if(createQuotePage.warningMessagesAdjustments.formatDynamicPath("Coverage A limit of less than").checkIfElementIsDisplayed()&& createQuotePage.warningMessagesAdjustments.formatDynamicPath("Coverage A limit of less than").checkIfElementIsPresent())
+		{
+			Assertions.verify(createQuotePage.warningMessagesAdjustments.formatDynamicPath("Coverage A limit of less than").checkIfElementIsDisplayed(),
+					true,"Create Quote Page","Short term rental warning message is verified, warning message is: "+createQuotePage.warningMessagesAdjustments.formatDynamicPath("Coverage A limit of less than").getData(),
+					false,false);
+		}
+		else {
+			Assertions.verify(createQuotePage.warningMessagesAdjustments.formatDynamicPath("Coverage A limit of less than").checkIfElementIsDisplayed(),
+					true,"Create Quote Page","Short term rental warning message is not verified, warning message is: "+createQuotePage.warningMessagesAdjustments.formatDynamicPath("Coverage A limit of less than").getData(),
+					false,false);
+		}
+		
+		createQuotePage.continueButton.waitTillPresenceOfElement(60);
+		createQuotePage.continueButton.waitTillVisibilityOfElement(60);
+		createQuotePage.continueButton.scrollToElement();
+		createQuotePage.continueButton.click();
+		Assertions.passTest("Create Quote Page", "Clicked on continue button successfully");
+
+		// clicking on issue Quote
+		Assertions.verify(accountOverviewPage.issueQuoteButton.checkIfElementIsDisplayed(), true,
+				"Account Overview Page", "Account Overview Page loaded", false, false);
+
+		// Getting Renewal Quote Number
+		String NewrenewalQuoteNumber = accountOverviewPage.quoteNumber.getData().substring(1, 12);
+		Assertions.passTest("Account Overview Page", "New Renewal Quote Number is : " + NewrenewalQuoteNumber);
+		accountOverviewPage.issueQuoteButton.scrollToElement();
+		accountOverviewPage.issueQuoteButton.click();
+		Assertions.passTest("Account Overview Page", "Click on Issue Quote Button successfully");
+		accountOverviewPage.requestBind.waitTillPresenceOfElement(60);
+		accountOverviewPage.requestBind.waitTillVisibilityOfElement(60);
+		accountOverviewPage.requestBind.scrollToElement();
+		accountOverviewPage.requestBind.click();
+		Assertions.passTest("Account Overview Page",
+				"Click on Bind Request Button successfully and Navigated to Request Bind page successfully");
+
+		// Entering renewal bind details
+		requestBindPage.renewalRequestBind(testData);
+		Assertions.passTest("Request Bind Page", "Selected the Flood as :" + testData.get("ApplicantHaveFloodPolicy"));
+		Assertions.passTest("Request Bind Page", "Bind Details Entered successfully");
+
+		// Clicking on homepage button
+		homePage.goToHomepage.scrollToElement();
+		homePage.goToHomepage.click();
+		homePage.searchReferral(NewrenewalQuoteNumber);
+		Assertions.passTest("Home Page", "Quote for referral is searched successfully");
+
+		// Approve the quote for referral
+		if (referralPage.pickUp.checkIfElementIsPresent() && referralPage.pickUp.checkIfElementIsDisplayed()) {
+			referralPage.pickUp.scrollToElement();
+			referralPage.pickUp.click();
+		}
+
+		Assertions.verify(referralPage.approveOrDeclineRequest.checkIfElementIsDisplayed(), true, "Referral Page",
+				"Referral page loaded successfully", false, false);
+		referralPage.clickOnApprove();
+		Assertions.passTest("Referral Page", "Referral request approved successfully");
+		Assertions.verify(approveDeclineQuotePage.approveButton.checkIfElementIsDisplayed(), true,
+				"Approve Decline Quote Page", "Approve Decline Quote page loaded successfully", false, false);
+		approveDeclineQuotePage.clickOnApprove();
+		Assertions.passTest("Approve Decline Quote Page", "Bind Request approved successfully");
+
+		requestBindPage.overrideEffectiveDate.waitTillPresenceOfElement(60);
+		requestBindPage.overrideEffectiveDate.waitTillVisibilityOfElement(60);
+		requestBindPage.overrideEffectiveDate.scrollToElement();
+		requestBindPage.overrideEffectiveDate.select();
+		requestBindPage.approve.waitTillPresenceOfElement(60);
+		requestBindPage.approve.waitTillVisibilityOfElement(60);
+		requestBindPage.approve.scrollToElement();
+		requestBindPage.approve.click();
+
+		// Getting Policy Number from policy summary Page
+		Assertions.verify(policySummaryPage.policyNumber.checkIfElementIsDisplayed(), true,
+				"Renewal Policy Summary Page",
+				"Renewal Policy Summary Page loaded successfully. Renewal PolicyNumber is "
+						+ policySummaryPage.policyNumber.getData(),
+				false, false);
+		// Click on Endorse PB link on policy summary page
+		policySummaryPage.endorsePB.waitTillPresenceOfElement(60);
+		policySummaryPage.endorsePB.waitTillVisibilityOfElement(60);
+		policySummaryPage.endorsePB.scrollToElement();
+		policySummaryPage.endorsePB.click();
+		Assertions.passTest("Policy Summary Page", "Clicked on EndorsePB link successfully");
+		Assertions.verify(endorsePolicyPage.endorsementEffDate.checkIfElementIsDisplayed(), true, "Endorse Policy Page",
+				"Endorse Policy Page loaded", false, false);
+
+		// Enter endorsement effective date
+		endorsePolicyPage.endorsementEffDate.waitTillPresenceOfElement(60);
+		endorsePolicyPage.endorsementEffDate.waitTillVisibilityOfElement(60);
+		endorsePolicyPage.endorsementEffDate.waitTillElementisEnabled(60);
+		endorsePolicyPage.endorsementEffDate.setData(testData.get("TransactionEffectiveDate"));
+		endorsePolicyPage.endorsementEffDate.tab();
+		Assertions.passTest("Endorse Policy Page",
+				"Entered Endorsement Effective Date successfully,Endorsement Effective Date: "
+						+ testData.get("TransactionEffectiveDate"));
+
+		// click on Edit Location/Building Information
+		endorsePolicyPage.editLocOrBldgInformationLink.waitTillPresenceOfElement(60);
+		endorsePolicyPage.editLocOrBldgInformationLink.waitTillVisibilityOfElement(60);
+		endorsePolicyPage.editLocOrBldgInformationLink.scrollToElement();
+		endorsePolicyPage.editLocOrBldgInformationLink.click();
+		Assertions.passTest("Endorse Policy Page", "Clicked on Edit Location/BuildingInformation link successfully");
+
+		// Entering dwelling details
+		Assertions.verify(dwellingPage.reviewDwelling.checkIfElementIsDisplayed(), true, "Dwelling Page",
+				"Dwelling Page loaded", false, false);
+		dwellingPage.OccupiedByArrow.waitTillPresenceOfElement(60);
+		dwellingPage.OccupiedByArrow.waitTillVisibilityOfElement(60);
+		dwellingPage.OccupiedByArrow.scrollToElement();
+		dwellingPage.OccupiedByArrow.click();
+		dwellingPage.OccupiedByOption.formatDynamicPath(testData.get("L1D1-OccupiedBy")).scrollToElement();
+		dwellingPage.OccupiedByOption.formatDynamicPath(testData.get("L1D1-OccupiedBy")).click();
+		Assertions.passTest("Dwelling Page", "Occupancy selected as:" + testData.get("L1D1-OccupiedBy"));
+		dwellingPage.reviewDwelling.waitTillPresenceOfElement(60);
+		dwellingPage.reviewDwelling.waitTillVisibilityOfElement(60);
+		dwellingPage.reviewDwelling.scrollToElement();
+		dwellingPage.reviewDwelling.click();
+		dwellingPage.continueButton.waitTillPresenceOfElement(60);
+		dwellingPage.continueButton.waitTillVisibilityOfElement(60);
+		dwellingPage.continueButton.scrollToElement();
+		dwellingPage.continueButton.click();
+		Assertions.passTest("Dwelling Page", "Clicked on Continue button successfully");
+
+		// Clicked on continue button on create quote page
+		Assertions.verify(createQuotePage.continueCreateQuoteButton.checkIfElementIsDisplayed(), true,
+				"Create Quote Page", "Create Quote Page loaded", false, false);
+		createQuotePage.continueCreateQuoteButton.waitTillPresenceOfElement(60);
+		createQuotePage.continueCreateQuoteButton.waitTillVisibilityOfElement(60);
+		createQuotePage.continueCreateQuoteButton.scrollToElement();
+		createQuotePage.continueCreateQuoteButton.click();
+		createQuotePage.continueButton.waitTillPresenceOfElement(60);
+		createQuotePage.continueButton.waitTillVisibilityOfElement(60);
+		createQuotePage.continueButton.scrollToElement();
+		createQuotePage.continueButton.click();
+		Assertions.passTest("Create Quote Page", "Clicked Continue button successfully");
+
+		// Clicked on Next Button on endorse policy page
+		Assertions.verify(endorsePolicyPage.nextButton.checkIfElementIsDisplayed(), true, "Enodrse Policy Page",
+				"Endorse Policy page loaded successfully", false, false);
+		endorsePolicyPage.nextButton.waitTillPresenceOfElement(60);
+		endorsePolicyPage.nextButton.waitTillVisibilityOfElement(60);
+		endorsePolicyPage.nextButton.scrollToElement();
+		endorsePolicyPage.nextButton.click();
+		endorsePolicyPage.continueButton.waitTillPresenceOfElement(60);
+		endorsePolicyPage.continueButton.waitTillVisibilityOfElement(60);
+		endorsePolicyPage.continueButton.scrollToElement();
+		endorsePolicyPage.continueButton.click();
+
+		// calculating SLTFv value on endorse policy page
+		// (premium+inspectionfee+policyfee)*sltf%=5%
+		transactionPremium = endorsePolicyPage.transactionPremium.getData().replaceAll("[^\\d-.]", "");
+		Assertions.passTest("Endorse Policy Page", "Transaction Premium: " + "$" + transactionPremium);
+		transactioninspectionFee = endorsePolicyPage.transactionInspectionFee.getData().replaceAll("[^\\d-.]", "");
+		Assertions.passTest("Endorse Policy Page", "Transaction Inspection Fee: " + "$" + transactioninspectionFee);
+		transactionpolicyFee = endorsePolicyPage.transactionPolicyFee.getData().replaceAll("[^\\d-.]", "");
+		Assertions.passTest("Endorse Policy Page", "Transaction Policy Fee: " + "$" + transactionpolicyFee);
+		String sltfPercentage = testData.get("SLTFPercentage");
+		Assertions.passTest("Endorse Policy Page", "SLTF Percentage:" + sltfPercentage);
+		transactionactualSLTF = endorsePolicyPage.transactionSLTF.getData();
+		Assertions.passTest("Endorse Policy Page", "Transaction Actual SLTF value: " + transactionactualSLTF);
+		transactionExpectedsltf = (Double.parseDouble(transactionPremium) + Double.parseDouble(transactionpolicyFee)
+				+ Double.parseDouble(transactioninspectionFee)) * (Double.parseDouble(sltfPercentage));
+		roundOfftransactionExpectedsltf = new BigDecimal(transactionExpectedsltf);
+		roundOfftransactionExpectedsltf = roundOfftransactionExpectedsltf.setScale(2, RoundingMode.HALF_UP);
+		Assertions.passTest("Endorse Policy Page",
+				"Transaction Expected SLTF value: " + format.format(roundOfftransactionExpectedsltf));
+		Assertions.passTest("Account Overview Page",
+				"Calculated SLTF value = " + "(" + transactionPremium + "+" + transactionpolicyFee + "+"
+						+ transactioninspectionFee + ")" + "*" + "(" + sltfPercentage + ")" + "="
+						+ format.format(roundOfftransactionExpectedsltf));
+
+		// Verifying actual SLTF and calculated SLTF are the same
+		if (transactionactualSLTF.equalsIgnoreCase(format.format(roundOfftransactionExpectedsltf))) {
+			Assertions.verify(transactionactualSLTF, format.format(roundOfftransactionExpectedsltf),
+					"Endorse Policy Page",
+					"The Calculated and Actual SLTF value are the same for AL Percentage 6% : " + transactionactualSLTF,
+					false, false);
+		} else {
+			Assertions.verify(transactionactualSLTF, format.format(roundOfftransactionExpectedsltf),
+					"Endorse Policy Page",
+					"The Calculated and Actual SLTF value are Not the same for AL Percentage 6% : "
+							+ transactionactualSLTF,
+					false, false);
+
+		}
+
+
+
+		endorsePolicyPage.completeButton.waitTillPresenceOfElement(60);
+		endorsePolicyPage.completeButton.waitTillVisibilityOfElement(60);
+		endorsePolicyPage.completeButton.scrollToElement();
+		endorsePolicyPage.completeButton.click();
+		Assertions.passTest("Endorse Policy Page", "Clciked on Complete button successfully");
+
+		// Clciked on close button on Enodrse Summary page
+		Assertions.verify(endorseSummaryDetailsPage.closeBtn.checkIfElementIsDisplayed(), true,
+				"Endorse SUmmary Details Page", "Endorse Summary Details Page loaded successfully", false, false);
+		endorseSummaryDetailsPage.closeBtn.waitTillPresenceOfElement(60);
+		endorseSummaryDetailsPage.closeBtn.waitTillVisibilityOfElement(60);
+		endorseSummaryDetailsPage.closeBtn.scrollToElement();
+		endorseSummaryDetailsPage.closeBtn.click();
+		Assertions.passTest("Endorse Summary Details Page", "Clicked on Close button successfully");
+
+		// Getting Policy Number from policy summary Page
+		Assertions.verify(policySummaryPage.policyNumber.checkIfElementIsDisplayed(), true,
+				"Renewal Policy Summary Page",
+				"Renewal Policy Summary Page loaded successfully. Renewal PolicyNumber is "
+						+ policySummaryPage.policyNumber.getData(),
+				false, false);
+
+		// verifying Endorsement link is created on Transaction history section.
+		if (policySummaryPage.transHistReason.formatDynamicPath(3).checkIfElementIsDisplayed()
+				&& policySummaryPage.transHistReason.formatDynamicPath(3).checkIfElementIsPresent()) {
+			Assertions.verify(policySummaryPage.transHistReason.formatDynamicPath(3).checkIfElementIsDisplayed(), true,
+					"Renewal Policy Summary Page",
+					"Endorsement link is created on Transaction history section is verified", false, false);
+		} else {
+			Assertions.verify(policySummaryPage.transHistReason.formatDynamicPath(3).checkIfElementIsDisplayed(), true,
+					"Renewal Policy Summary Page",
+					"Endorsement link is created on Transaction history section not verified", false, false);
+
+		}
+
+		// Sign Out as USM
+		homePage.signOutButton.scrollToElement();
+		homePage.signOutButton.click();
+
+		// close the browser
+		homePage.quitBrowser();
+		Assertions.passTest("NAHO Renewal TC078_PNBREN012", "Executed Succesfully");
+
+	}
+
+}

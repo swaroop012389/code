@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<!-- =============================================================================
+     Add all regression tests needed to verify a release is stable.
+============================================================================== -->
+
+<suite name="Production Verification Tests" parallel="tests" thread-count="10">
+  <listeners>
+    <listener class-name="com.NetServAutomationFramework.test.SuiteListener" />
+  </listeners>
+  <test name="Verify Production Environment/Release is Stable" parallel="classes">
+    <classes>
+      <class name="com.icat.epicenter.test.commercial.release.TC001"/>
+      <class name="com.icat.epicenter.test.commercial.release.TC002"/>
+      <class name="com.icat.epicenter.test.commercial.release.TC003"/>
+
+      <class name="com.icat.epicenter.test.naho.release.TC001"/>
+      <class name="com.icat.epicenter.test.naho.release.TC002"/>
+
+      <class name="com.icat.epicenter.test.hiho.release.TC001"/>
+
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

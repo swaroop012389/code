@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Data Tests" parallel="tests" thread-count="10">
+  <listeners>
+    <listener class-name="com.NetServAutomationFramework.test.SuiteListener" />
+  </listeners>
+  <test name="NAHO NB Data Tests" parallel="classes">
+    <!--  uncomment to run specific test scenarios; otherwise run all enabled in the master spreadsheet -->
+    <!-- <parameter name="scenarios" value="1-3,5"/> -->
+    <parameter name="scenarios" value="1"/>
+    <classes>
+      <class name="com.icat.epicenter.test.naho.data.NahoNBDataTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Tests" parallel="tests" thread-count="3">
+	<listeners>
+		<listener class-name="com.NetServAutomationFramework.test.SuiteListener" />
+	</listeners>
+	<test name="NAHO ESB NB Regression Tests" parallel="classes">
+		<classes>
+			<class name="com.icat.epicenter.test.naho.regression.ESBNB.CTTC001" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBNB.CTTC002" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBNB.DETC001" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBNB.DETC002" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBNB.GATC001" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBNB.MATC001" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBNB.MATC002" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBNB.MATC003" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBNB.MDTC001" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBNB.MDTC002" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBNB.METC001" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBNB.METC002" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBNB.NHTC001" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBNB.RITC001" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBNB.RITC002" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBNB.RITC003" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBNB.VATC001" />
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->

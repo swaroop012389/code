@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Tests" parallel="none">
+	<listeners>
+		<listener class-name="com.NetServAutomationFramework.test.SuiteListener" />
+	</listeners>
+	<test name="Commercial Wholesale User Preferences Tests">
+		<classes>
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC011" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC026" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC044" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC049" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC071" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC079" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC081" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC103" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC104" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC105" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC106" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC107" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC108" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC109" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC110" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC111" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC112" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC113" />
+			<class
+				name="com.icat.epicenter.test.commercial.wholesaleRegression.TC114" />
+		</classes>
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->

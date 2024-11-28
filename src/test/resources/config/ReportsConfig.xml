@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extentreports>
+  <configuration>
+    <!-- report theme -->
+    <!-- standard, dark -->
+    <theme>dark</theme>
+  
+    <!-- document encoding -->
+    <!-- defaults to UTF-8 -->
+    <encoding>UTF-8</encoding>
+    
+    <!-- protocol for script and stylesheets -->
+    <!-- defaults to https -->
+    <protocol>https</protocol>
+    
+    <!-- title of the document -->
+    <documentTitle>Epicenter</documentTitle>
+    
+    <!-- report name - displayed at top-nav -->
+    <reportName>Epicenter</reportName>
+    
+    <!-- report headline - displayed at top-nav, after reportHeadline -->
+    <reportHeadline>Automation Report</reportHeadline>
+    
+    <!-- global date format override -->
+    <!-- defaults to yyyy-MM-dd -->
+    <dateFormat>yyyy-MM-dd</dateFormat>
+    
+    <!-- global time format override -->
+    <!-- defaults to HH:mm:ss -->
+    <timeFormat>HH:mm:ss</timeFormat>
+    
+    <!-- custom javascript -->
+    <scripts>
+      window.onload = function(){
+			document.getElementByTagName('thead')[1].childNodes[0].innerhtml="test"
+	  }
+	     
+    </scripts>
+    
+    <!-- custom styles -->
+    <styles>
+		
+      .header {
+		color: #41b2db !important;
+		font-size: 16px;
+		font-weight:bold;
+		text-transform: uppercase;
+	  }
+	  .group {
+		color: #41b2db !important;
+		font-size: 14px;
+		font-weight:bold;
+		text-transform: uppercase;
+	  }
+    </styles>
+  </configuration>
+</extentreports>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Tests" parallel="tests" thread-count="8">
+	<listeners>
+		<listener class-name="com.NetServAutomationFramework.test.SuiteListener" />
+	</listeners>
+	<test name="HIHO NB Regression Tests" parallel="classes">
+		<classes>
+			<class name="com.icat.epicenter.test.hiho.regression.NB.TC001" />
+			<class name="com.icat.epicenter.test.hiho.regression.NB.TC002" />
+			<class name="com.icat.epicenter.test.hiho.regression.NB.TC003" />
+			<class name="com.icat.epicenter.test.hiho.regression.NB.TC004" />
+			<class name="com.icat.epicenter.test.hiho.regression.NB.TC005" />
+			<class name="com.icat.epicenter.test.hiho.regression.NB.TC006" />
+			<class name="com.icat.epicenter.test.hiho.regression.NB.TC007" />
+			<class name="com.icat.epicenter.test.hiho.regression.NB.TC008" />
+			<class name="com.icat.epicenter.test.hiho.regression.NB.TC009" />
+			<class name="com.icat.epicenter.test.hiho.regression.NB.TC010" />
+			<class name="com.icat.epicenter.test.hiho.regression.NB.TC011" />
+			<class name="com.icat.epicenter.test.hiho.regression.NB.TC012" />
+			<class name="com.icat.epicenter.test.hiho.regression.NB.TC013" />
+			<class name="com.icat.epicenter.test.hiho.regression.NB.TC014" />
+			<class name="com.icat.epicenter.test.hiho.regression.NB.TC015" />
+			<class name="com.icat.epicenter.test.hiho.regression.NB.TC016" />
+			<class name="com.icat.epicenter.test.hiho.regression.NB.TC017" />
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->

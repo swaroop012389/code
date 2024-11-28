@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Tests" parallel="tests" thread-count="10">
+  <listeners>
+    <listener class-name="com.NetServAutomationFramework.test.SuiteListener" />
+  </listeners>
+  <test name="NAHO Smoke Tests" parallel="classes">
+    <classes>
+      <class name="com.icat.epicenter.test.naho.smoke.TC001"/>
+      <class name="com.icat.epicenter.test.naho.smoke.TC002"/>
+      <class name="com.icat.epicenter.test.naho.smoke.TC003"/>
+      <class name="com.icat.epicenter.test.naho.smoke.TC004"/>
+      <class name="com.icat.epicenter.test.naho.smoke.TC005"/>
+      <class name="com.icat.epicenter.test.naho.smoke.TC006"/>
+
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Tests" parallel="tests" thread-count="8">
+  <listeners>
+    <listener class-name="com.NetServAutomationFramework.test.SuiteListener" />
+  </listeners>
+  <test name="Commercial Retail Regression Tests" parallel="classes">
+    <classes>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC001"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC002"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC003"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC004"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC005"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC006"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC007"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC008"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC009"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC010"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC011"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC012"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC013"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC014"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC015"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC016"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC017"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC018"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC019"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC020"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC021"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC022"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC024"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC025"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC026"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC027"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC028"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC029"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC030"/>
+      <!--<class name="com.icat.epicenter.test.commercial.retailRegression.TC031"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC032"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC033"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC034"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC035"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC036"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC037"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC038"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC039"/> -->
+      <!-- TC023 run after TC009 -->
+      <!--<class name="com.icat.epicenter.test.commercial.retailRegression.TC023"/> 
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC041"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC042"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC043"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC044"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC045"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC046"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC047"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC048"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC049"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC050"/> 
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC051"/> 
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC052"/> 
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC053"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC054"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC055"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC056"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC057"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC058"/>
+      <class name="com.icat.epicenter.test.commercial.retailRegression.TC059"/> -->
+      <!-- TC040 run after TC023 -->
+     <!-- <class name="com.icat.epicenter.test.commercial.retailRegression.TC040"/> -->
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Tests" parallel="tests" thread-count="3" >
+	<listeners>
+		<listener class-name="com.NetServAutomationFramework.test.SuiteListener" />
+	</listeners>
+	<test name="NAHO ESB PNB Regression Tests" parallel="classes">
+		<classes>
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBCTTC001" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBCTTC002" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBDETC001" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBDETC002" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBDETC003" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBGATC001" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBGATC002" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBMATC001" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBMATC002" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBMDTC001" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBMDTC002" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBMDTC003" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBMDTC004" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBMETC001" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBMETC002" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBNHTC001" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBNHTC002" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBNHTC003" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBRITC001" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBRITC002" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBRITC003" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBVATC001" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBVATC002" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBVATC003" />
+			<class name="com.icat.epicenter.test.naho.regression.ESBPNB.PNBVATC004" />
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->

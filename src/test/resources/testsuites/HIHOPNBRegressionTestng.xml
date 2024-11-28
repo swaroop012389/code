@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Tests" parallel="tests" thread-count="8">
+	<listeners>
+		<listener class-name="com.NetServAutomationFramework.test.SuiteListener" />
+	</listeners>
+	<test name="HIHO NB Regression Tests" parallel="classes">
+		<classes>
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC005" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC006" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC007" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC009" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC011" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC012" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC013" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC014" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC015" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC016" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC017" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC018" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC020" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC021" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC022" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC023" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC024" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC025" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC026" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC027" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC028" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC031" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC034" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC038" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC040" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC041" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC042" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC043" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC044" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC045" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC046" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC047" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC048" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC049" />
+
+			<!---Legacy Product Tcs-->
+			<!--<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC001" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC002" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC003" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC004" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC008" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC010" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC029" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC030" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC032" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC033" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC035" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC036" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC037" />
+			<class name="com.icat.epicenter.test.hiho.regression.PNB.PNBTC039" />-->
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->

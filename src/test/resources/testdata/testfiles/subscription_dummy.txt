@@ -1,0 +1,1 @@
+Dummy subscription agreement for upload when a doc is required.

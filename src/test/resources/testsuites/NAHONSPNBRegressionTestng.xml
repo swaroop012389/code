@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Tests" parallel="tests" thread-count="3">
+	<listeners>
+		<listener class-name="com.NetServAutomationFramework.test.SuiteListener" />
+	</listeners>
+	<test name="NAHO NS PNB Regression Tests" parallel="classes">
+		<classes>
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBFLTC001_ENDT" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBFLTC002_CANC" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBFLTC003_MORT" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBFLTC004_RNL" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBFLTC005_RNL" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBFLTC006_GEN" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBFLTC007_GEN" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBFLTC008_GEN" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBFLTC009_GEN" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBFLTC010_GEN" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBFLTC011_GEN" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBFLTC012_GEN" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBFLTC013_GEN" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBFLTC014_GEN" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBNCTC001_CANC" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBNCTC002_MORT" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBNCTC003_RNL" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBNCTC004_GEN" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBNCTC005_GEN" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBNCTC006_GEN" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBNJTC001_CANC" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBNJTC002_MORT" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBNJTC003_RNL" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBSCTC001_ENDT" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBSCTC002_CANC" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBSCTC003_MORT" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBSCTC004_NLL" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBSCTC005_RNL" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBSCTC006_RNL" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBSCTC007_GEN" />
+			<class name="com.icat.epicenter.test.naho.regression.NSPNB.PNBSCTC008_GEN" />
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->

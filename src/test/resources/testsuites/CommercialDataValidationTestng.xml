@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Data Tests" parallel="tests" thread-count="10">
+  <listeners>
+    <listener class-name="com.NetServAutomationFramework.test.SuiteListener" />
+  </listeners>
+  <test name="Commercial NB Data Tests" parallel="classes">
+    <classes>
+      <class name="com.icat.epicenter.test.commercial.data.CommercialDatabaseValidationTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
